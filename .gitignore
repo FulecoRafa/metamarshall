@@ -104,6 +104,7 @@ dist
 .tern-port
 
 *.csv
+!test/**/*.csv
 .idea
 node_modules
 *.iml
