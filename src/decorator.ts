@@ -13,7 +13,6 @@ export interface IsCsvDecorated {
 }
 
 export function Csv<T extends { new (...args: any[]): {} }>(delimiter: string = ','){
-    console.log('Csv decorator called');
     if (delimiter.length !== 1) {
         throw new Error('Delimiter must be a single character');
     }
@@ -29,7 +28,6 @@ export function Csv<T extends { new (...args: any[]): {} }>(delimiter: string = 
 }
 
 export function CsvProperty(original: Partial<CsvPropsConfig>) {
-    console.log('CsvProperty');
     let config: CsvPropsConfig = {
         name: '',
         quoted: false,
