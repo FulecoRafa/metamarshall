@@ -1,7 +1,7 @@
-import { IsCsvDecorated } from "../decorator";
+import { IsCsvDecorated } from "./decorator";
 import * as fs from 'fs';
 
-export async function toCsvFile<T extends Object>(clsAny: T[], fileName: string, header = true) {
+export async function toCsvFile<T extends Object>(clsAny: T[], fileName: string, header = true): Promise<null> {
     // Check if T is decorated with @Csv
     if (!('_csvProps' in clsAny[0]) || !('_csvDelimiter' in clsAny[0])) {
         throw new Error('Class must be decorated with @Csv');

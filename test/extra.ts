@@ -8,7 +8,7 @@ export class Animal {
     @CsvProperty({name: 'Animal'})
     public type: string;
 
-    constructor(name: string, type: string) {
+    constructor(name: string = '', type: string = '') {
         this.name = name;
         this.type = type;
     }
