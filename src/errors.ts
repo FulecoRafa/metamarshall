@@ -13,3 +13,11 @@ export class CsvDecoratorNotImplementedError<T> extends Error {
         this.name = 'CsvDecoratorNotImplementedError';
     }
 }
+
+export class TxtDecoratorNotImplementedError<T> extends Error {
+    constructor(type: (new () => T)) {
+        const message = `Class ${typeof type} must be decorated with @Txt`;
+        super(message);
+        this.name = 'TxtDecoratorNotImplementedError';
+    }
+}
