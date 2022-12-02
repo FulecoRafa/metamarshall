@@ -1,11 +1,13 @@
-import { Csv, CsvProperty } from "../src";
+import { Csv, CsvProperty, TxtProp } from "../src";
 
 @Csv(';')
 export class Animal {
     @CsvProperty({name: 'Nome', padding: 'right', fixedWidth: 50})
+    @TxtProp({size: 50, padding: 'right', dataType: 'string'})
     public name: string;
 
     @CsvProperty({name: 'Animal'})
+    @TxtProp({size: 10, dataType: 'string', padding: 'right'})
     public type: string;
 
     constructor(name: string = '', type: string = '') {
