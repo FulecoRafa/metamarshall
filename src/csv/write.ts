@@ -1,14 +1,21 @@
 import { IsCsvDecorated } from "./decorator";
 import * as fs from 'fs';
+import { CsvDecoratorNotImplementedError } from "../errors";
 
-export async function toCsvFile<T extends Object>(clsAny: T[], fileName: string, header = true): Promise<null> {
+/**
+ * Write an array of objects to a CSV file.
+ * @param path Name of the file to write to.
+ * @param data Array of objects to write to file.
+ * @param header If true, the first line of the file will be the header.
+ */
+export async function toCsvFile<T extends Object>(path: string, data: T[], header = true): Promise<null> {
     // Check if T is decorated with @Csv
-    if (!('_csvProps' in clsAny[0]) || !('_csvDelimiter' in clsAny[0])) {
-        throw new Error('Class must be decorated with @Csv');
+    if (!('_csvProps' in data[0]) || !('_csvDelimiter' in data[0])) {
+        throw new CsvDecoratorNotImplementedError(Object.getPrototypeOf(data[0]));
     }
 
     // Convert T to implementation of IsCsvDecorated
-    const cls = clsAny as any as IsCsvDecorated[];
+    const cls = data as any as IsCsvDecorated[];
 
     let props = cls[0]._csvProps;
     let delimiter = cls[0]._csvDelimiter;
@@ -17,7 +24,7 @@ export async function toCsvFile<T extends Object>(clsAny: T[], fileName: string,
 
     return new Promise((resolve, reject) => {
         // Open file
-        const stream = fs.createWriteStream(fileName, {
+        const stream = fs.createWriteStream(path, {
             flags: 'w',
             encoding: 'utf8',
             autoClose: true

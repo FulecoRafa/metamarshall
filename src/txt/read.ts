@@ -3,6 +3,11 @@ import { IsTxtDecorated, TxtPropsConfig } from "./decorator";
 import * as fs from "fs";
 import * as readline from "readline";
 
+/**
+ * Read data from txt file
+ * @param path Path to txt file
+ * @param type Class to transform data to
+ */
 export async function fromTxtFile<T>(path: string, type: (new () => T)): Promise<T[]> {
     const dummy = new type();
 

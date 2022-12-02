@@ -3,6 +3,11 @@ import { CsvDecoratorNotImplementedError, IncorrectLineError } from "../errors";
 import * as fs from "fs";
 import * as readline from "readline";
 
+/**
+ * Read data from csv file
+ * @param path Path to csv file
+ * @param type Class to transform data to
+ */
 export async function fromCsvFile<T>(path: string, type: (new () => T)): Promise<T[]> {
     const dummy = new type();
 

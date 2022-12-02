@@ -2,6 +2,11 @@ import { TxtDecoratorNotImplementedError } from "../errors";
 import { IsTxtDecorated } from "./decorator";
 import * as fs from "fs";
 
+/**
+ * Write an array of objects to a TXT file.
+ * @param path Name of the file to write to.
+ * @param data Array of objects to write to file.
+ */
 export function toTxtFile<T extends Object>(path: string, data: T[]): Promise<null> {
     // Check if T is decorated with @Txt
     if (!('_txtProps' in data[0])) {
