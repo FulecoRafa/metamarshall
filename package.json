@@ -18,7 +18,6 @@
   },
   "homepage": "https://github.com/FulecoRafa/metamarshall#readme",
   "scripts": {
-    "dev": "ts-node test/csv.test.ts",
     "build": "tsc",
     "test": "jest"
   },
